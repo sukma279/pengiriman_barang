@@ -1,0 +1,50 @@
+<?php use Phalcon\Tag; ?>
+
+<?php echo $this->getContent(); ?>
+
+<table width="100%">
+    <tr>
+        <td align="left">
+            <?php echo $this->tag->linkTo(array("data_ongkir/index", "Go Back")); ?>
+        </td>
+        <td align="right">
+            <?php echo $this->tag->linkTo(array("data_ongkir/new", "Create ")); ?>
+        </td>
+    </tr>
+</table>
+
+<table class="browse" align="center">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nama</th>
+            <th>ongkir</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($page->items as $data_ongkir) { ?>
+        <tr>
+            <td><?php echo $data_ongkir->_id ?></td>
+            <td><?php echo $data_ongkir->nama_daerah ?></td>
+            <td><?php echo $data_ongkir->ongkir ?></td>
+            <td><?php echo $this->tag->linkTo(array("data_ongkir/edit/" . $data_ongkir->_id, "Edit")); ?></td>
+            <td><?php echo $this->tag->linkTo(array("data_ongkir/delete/" . $data_ongkir->_id, "Delete")); ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+    <tbody>
+        <tr>
+            <td colspan="2" align="right">
+                <table align="center">
+                    <tr>
+                        <td><?php echo $this->tag->linkTo("data_ongkir/search", "First") ?></td>
+                        <td><?php echo $this->tag->linkTo("data_ongkir/search?page=" . $page->before, "Previous") ?></td>
+                        <td><?php echo $this->tag->linkTo("data_ongkir/search?page=" . $page->next, "Next") ?></td>
+                        <td><?php echo $this->tag->linkTo("data_ongkir/search?page=" . $page->last, "Last") ?></td>
+                        <td><?php echo $page->current, "/", $page->total_pages ?></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
